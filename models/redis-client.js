@@ -11,6 +11,7 @@ module.exports = {
 
 function createClient() {
   const result = redis.createClient({
+    url: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
     retry_strategy: () => {
       ready = false;
 
