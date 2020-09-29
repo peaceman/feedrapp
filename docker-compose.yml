@@ -1,0 +1,14 @@
+x-restart-policy: &restart-policy
+  restart: unless-stopped
+
+version: "2.4"
+services:
+  redis:
+    <<: *restart-policy
+    image: redis:6.0.8
+
+  feedr:
+    <<: *restart-policy
+    build: .
+    environment:
+      REDIS_URL: redis://redis:6379

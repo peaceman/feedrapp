@@ -1,0 +1,18 @@
+version: "2.4"
+services:
+  feedr:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.feedr.rule=Host(`feed.sneaxs.de`)"
+      - "traefik.http.routers.feedr.middlewares=force-tls@file"
+      - "traefik.http.routers.feedr-tls.rule=Host(`feed.sneaxs.de`)"
+      - "traefik.http.routers.feedr-tls.tls.certresolver=acme-tls"
+      - "traefik.http.services.name-of-your-choice.loadbalancer.server.port=8080"
+    networks:
+      - default
+      - container-gateway
+
+networks:
+  container-gateway:
+    name: "${GATEWAY_NETWORK}"
+    external: true
