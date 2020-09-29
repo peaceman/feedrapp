@@ -9,6 +9,7 @@ COPY views views/
 COPY package.json .
 COPY yarn.lock .
 COPY ecosystem.config.js .
+COPY models models/
 
 # Add Python for node-gyp / fastfeed
 RUN apk add --update python python-dev py-pip build-base
